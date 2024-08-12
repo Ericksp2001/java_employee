@@ -68,7 +68,6 @@ public class EmployeeManagementApp {
         try {
             System.out.print("Enter Employee ID: ");
             int id = Integer.parseInt(scanner.nextLine());
-
             if (employees.containsKey(id)) {
                 throw new IllegalArgumentException("Employee ID already exists. Please use a unique ID.");
             }
@@ -77,6 +76,9 @@ public class EmployeeManagementApp {
             String name = scanner.nextLine().trim();
             if (name.isEmpty()) {
                 throw new IllegalArgumentException("Employee name cannot be empty.");
+            }
+            if (!name.matches("^[\\p{L}\\s']+$")) {
+                throw new IllegalArgumentException("Employee name can only contain letters, spaces, apostrophes, and accents.");
             }
 
             System.out.print("Enter Employee Salary (use ',' or '.' for decimals): ");
